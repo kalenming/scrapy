@@ -10,14 +10,16 @@ def get_result(url):
     
     title = re.select('#content .hd a ')
     for tit in title:
-        titles.append(tit)
-    director = re.select('#content .bd p ')
+        ti = tit.select('span')[0]
+        titles.append(ti.text)
+    director = re.select('#content .bd  ')
     for dir in director:
-        directors.append(dir.text)
+        d = dir.select('p')[0]
+        directors.append(d.text)
     rate = re.select('#content .rating_num')
     for i in rate:
         rates.append(i.text)
-    impress = re.select('#content .inq')
+    impress = re.select('#content .quote')
     for i in impress:
         impressions.append(i.text)
     return titles,directors,rates,impressions
@@ -28,7 +30,7 @@ def write_excel(book,sheet_name,titles,directors,rates,impressions):
     ws.write(0,1,'导演')
     ws.write(0,2,'评分')
     ws.write(0,3,'印象')
-    for i in range(0,len(titles)):
+    for i in range(0,len(impressions)):
         ws.write(i+1,0,titles[i])
         ws.write(i+1,1,directors[i])
         ws.write(i+1,2,rates[i])
@@ -47,11 +49,13 @@ if __name__ == "__main__":
     rates = list()
     directors = list()
     impressions = list()
-    contents = [titles,directors,rates,impressions]
     web_url = ['https://movie.douban.com/top250?start={}&filter=' .format(str(i)) for i in range(0,250,25)]
     for url in web_url:
         get_result(url)
-    print (titles)
+    print ( len(directors))
+    print (len(titles))
+    print (len(rates))
+    print (len(impressions))
     sheet_name = 'film'
-    write_excel(book,sheet_name,titles,directors,rates,impressions)
+    #write_excel(book,sheet_name,titles,directors,rates,impressions)
     
