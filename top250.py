@@ -39,7 +39,7 @@ def write_excel(book,sheet_name,titles,directors,rates,impressions):
         
         
         
-    
+//*[@id="ng-view"]/div[2]/div/div/div/div[1]/div/div[8]
     
     
 if __name__ == "__main__":
