@@ -15,7 +15,7 @@ with open("detail.txt","rb") as f:
     data = f.read()
     companys = re.findall(r'\[(.*?)\]',str(data))
     for comp in companys:
-        urls = re.findall(r'picUrl":"(.*?)"',company)
+        urls = re.findall(r'picUrl":"(.*?)"',comp)
         os.mkdir(str(i))
         for url in urls:
             url = 'https://www.ljlpay.com/upload/lanjinling/online/' + url
