@@ -33,7 +33,7 @@ def get_url(proxys):
 
     final_urls = set()
     end_urls = list()
-    for i in range(1,100):
+    for i in range(100,200):
         url = base_url + str(i) +'.html#page=' + str(i)
         print (url)
         try:

@@ -12,11 +12,11 @@ from scrapy.exceptions import DropItem
 class UrlPipeline(object):
 
     def __init__(self):
-        self.url = set() #注意到set型数据的应用
+        self.ids_seen = set() #注意到set型数据的应用
 
     def process_item(self, item, spider):
-        if item['url'] in self.url:
+        if item['id'] in self.ids_seen:
             raise DropItem("url item found: %s" % item)
         else:
-            self.url.add(item['url'])
+            self.ids_seen.add(item['id'])
             return item

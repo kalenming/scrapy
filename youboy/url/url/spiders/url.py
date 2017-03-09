@@ -6,9 +6,11 @@ import logging
 class UrlSpider(scrapy.Spider):
   name = 'url'
   allowed_domains = ['http://www.youboy.com/']
-  start_urls = ['http://qiye.youboy.com/type/800_{}.html#page={}'
-                .format(i,i) for i in range(1,6)]
-
+  # start_urls = ['http://qiye.youboy.com/type/800_{}.html#page={}'
+  #               .format(i,i) for i in range(1,6)]
+  start_urls = ['http://qiye.youboy.com/type/800_1.html#page=1',
+                'http://qiye.youboy.com/type/800_1.html#page=1',
+                ]
   def parse(self, response):
     item = UrlItem()
     urls = response.xpath('//li[@class="dqscontit"]')

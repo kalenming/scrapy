@@ -50,12 +50,13 @@ def get_detail(base_urls,proxys,book,sheet):
             address = details[0].select('li')[1].text
             person = details[3].select('li')[1].text
             phone = details[4].select('li')[1].text
-            sheet.write(index,0,name)
-            sheet.write(index,1,person)
-            sheet.write(index,2,phone)
-            sheet.write(index,3,address)
-            index = index + 1
-            print ('第%s条爬虫' % index)
+            if len(person) >=2:
+                sheet.write(index,0,name)
+                sheet.write(index,1,person)
+                sheet.write(index,2,phone)
+                sheet.write(index,3,address)
+                index = index + 1
+                print ('第%s条爬虫' % index)
         except Exception as e:
             print (e)
 

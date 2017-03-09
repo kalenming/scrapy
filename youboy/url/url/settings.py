@@ -26,6 +26,9 @@ LOG_ENCODING = 'utf-8' # 编码
 LOG_FILE = 'detail.log' #文件
 LOG_STDOUT = False #日志输出到屏幕
 
+#去重
+DUPEFILTER_CLASS = 'url.custom_filters.CustomURLFilter'
+
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'url (+http://www.yourdomain.com)'
