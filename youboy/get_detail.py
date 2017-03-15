@@ -11,6 +11,7 @@ import pandas as pd
 import os
 import xlrd
 import random
+import xlwt
 
 
 #获取代理ip
@@ -20,8 +21,7 @@ def proxies():
     ips = fp.readlines()
     proxys = list()
     for p in ips:
-        ip =p.strip('\n').split('\t')
-        proxy = 'http://' +  ip[0] + ':' + ip[1]
+        proxy =p.strip('\n')
         proxies = {'proxy':proxy}
         proxys.append(proxies)
     return proxys
@@ -42,10 +42,11 @@ def get_detail(base_urls,proxys,book,sheet):
 
     for url in base_urls:
         print (url)
-        s = requests.get(url,proxies=random.choice(proxys))
-        soup = BeautifulSoup(s.text,'lxml')
         try:
+            s = requests.get(url,proxies=random.choice(proxys),timeout = 1)
+            soup = BeautifulSoup(s.text,'lxml')
             name = soup.select('.gsinfocon > ul > .gslir > span')[0].text
+            industry = soup.select('.gsinfocon > ul')[2].select('.gslir')[0].text
             details = soup.select('.gslxcon > ul')
             address = details[0].select('li')[1].text
             person = details[3].select('li')[1].text
@@ -55,6 +56,7 @@ def get_detail(base_urls,proxys,book,sheet):
                 sheet.write(index,1,person)
                 sheet.write(index,2,phone)
                 sheet.write(index,3,address)
+                sheet.write(index,4,industry)
                 index = index + 1
                 print ('第%s条爬虫' % index)
         except Exception as e:
@@ -66,6 +68,7 @@ if __name__ == "__main__":
     proxys = proxies()
     base_urls = read_url()
     get_detail(base_urls,proxys,book,sheet)
-    book.save('./2.xls')
+    book.save('./6
+    .xls')
     
     
