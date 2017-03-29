@@ -39,16 +39,17 @@ def search_company(cols):
             print (col)
             end = time.clock()
             print ('搜索公司用时：%f s' % (end - start))
-            data = {'url':com_url,
-                    'company':col
-                    }    		
-            company_url.insert_one(data)
+            # data = {'url':com_url,
+            #         'company':col
+            #         }
+            # company_url.insert_one(data)
+            get_result(col,url)
         except  Exception as e: 
             print ('can not find this company in tianyancha!')
     		#d_url = 'http://www.tianyancha.com/company/2347423402'
             #return col,d_url
 	
-'''def get_result(col,url):
+def get_result(col,url):
     start = time.clock()
     dcap = dict(DesiredCapabilities.PHANTOMJS)
     dcap["phantomjs.page.settings.userAgent"] = (
@@ -89,9 +90,9 @@ def search_company(cols):
             print ("no invest!")
     end = time.clock()
     print ("获取详情用时:%f s" % (end-start))
-'''
+
 def read_xlsx():
-    fname = "C:\\Users\\Administrator\\Desktop\\test.xlsx"
+    fname = "C:\\Users\\Administrator\\Desktop\\daily\\20170323\\[汽配]20170323企业注册.xlsx"
     workbook = xlrd.open_workbook(fname)
     sheet = workbook.sheet_by_name('Sheet1')
     cols = sheet.col_values(0)
@@ -105,5 +106,5 @@ def read_xlsx():
 if __name__ == "__main__":
     con = pymongo.MongoClient('localhost',27017)#打开数据库端
     db = con.tyc   #这里建立一个库,怎样直接在已有库下面建表还未解决
-    company_url = db.company_url    
+    company = db.company
     read_xlsx()

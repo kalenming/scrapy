@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="../bootstrap-table.js"></script>
+    <link rel="stylesheet" href="url_for('static',filename='bootstrap-table.css')">
+
+</head>
+
+<body>
+    <div class="container-fluid">
+        <table class="table">
+              <caption>用户信息</caption>
+              <thead>
+                <tr>
+                    <th>昵称</th>
+                    <th>关注</th>
+                    <th>粉丝</th>
+                    <th>文章</th>
+                    <th>文集</th>
+                    <th>头像</th>
+                    <th>详情</th>
+                </tr>
+              </thead>
+            <tbody id="itemContainer">
+              {%for item in data%}
+              <tr>
+
+                  <th>{{item['name']}}</th>
+                  <th>{{item['following']}}</th>
+                  <th>{{item['followed']}}</th>
+                  <th>{{item['articles']}}</th>
+                  <th>{{item['essays']}}</th>
+                  <th>{{item['imgurl']}}</th>
+                  <th>{{item['userurl']}}</th>
+              </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+
+
