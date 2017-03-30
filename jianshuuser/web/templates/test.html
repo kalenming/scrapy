@@ -12,38 +12,25 @@
 
 <body>
     <div class="container-fluid">
-
         <table id="example" class="table">
               <caption>用户信息</caption>
               <thead>
                 <tr>
                     <th>昵称</th>
-                    <th>关注</th>
-                    <th>粉丝</th>
-                    <th>文章</th>
-                    <th>文集</th>
-                    <th>详情</th>
                 </tr>
               </thead>
             <tbody id="itemContainer">
               {%for item in data%}
               <tr>
-
-                  <th>{{item['name']}}</th>
-                  <th>{{item['following']}}</th>
-                  <th>{{item['followed']}}</th>
-                  <th>{{item['articles']}}</th>
-                  <th>{{item['essays']}}</th>
-                  <th><a href={{'http://www.jianshu.com' + item['userurl']}} target="_blank">详情</a></th>
-              </tr>
+                  <th>{{item}}</th>
             {% endfor %}
             </tbody>
         </table>
-        <script>
-            $(document).ready(function() {
-            $('#example').dataTable();
-            } );
-        </script>
+        <script type="text/javascript">
+        $(document).ready(function() {
+        $('#example').dataTable();
+        } );
+    </script>
     </div>
 </body>
 
