@@ -8,21 +8,62 @@
     <link rel="stylesheet" href='/static/bootstrap-table.css'>
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
     <script src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+    <script>
+        function loadXMLDoc()
+        {
+            var xmlhttp;
+            if (window.XMLHttpRequest)
+            {
+                //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+                xmlhttp=new XMLHttpRequest();
+            }
+            else
+            {
+                // IE6, IE5 浏览器执行代码
+                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange=function()
+            {
+                if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                {
+                    document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+                }
+            }
+            xmlhttp.open("GET","/try/ajax/ajax_info.txt",true);
+            xmlhttp.send();
+        }
+    </script>
 </head>
 
 <body>
+    <div id="myDiv"><h2>使用 AJAX 修改该文本内容</h2></div>
+        <button type="button" onclick="loadXMLDoc()">修改内容</button>
     <div class="container-fluid">
         <table id="example" class="table">
               <caption>用户信息</caption>
               <thead>
                 <tr>
                     <th>昵称</th>
+                    <th>粉丝</th>
+                    <th>关注</th>
+                    <th>文章</th>
+                    <th>文集</th>
+                    <th>详情</th>
+                    <th>头像</th>
+                    <th>链接</th>
                 </tr>
               </thead>
             <tbody id="itemContainer">
-              {%for item in data%}
+              {%for index,item in data.iterrows()%}
               <tr>
-                  <th>{{item}}</th>
+                  <th>{{item[0]}}</th>
+                  <th>{{item[1]}}</th>
+                  <th>{{item[2]}}</th>
+                  <th>{{item[3]}}</th>
+                  <th>{{item[4]}}</th>
+                  <th>{{item[5]}}</th>
+                  <th><a href={{'http://www.jianshu.com' + item[6]}} target="_blank">...</a></th>
+                  <th><a href={{item[7]}} target="_blank">头像</a></th>
             {% endfor %}
             </tbody>
         </table>

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from flask import Flask
 app = Flask(__name__)
-import xlrd
+import pandas
 import pymongo
 from flask import render_template
 conn = pymongo.Connection('localhost',27017)
@@ -19,10 +19,12 @@ def fans_list():
 
 @app.route('/test',methods=['GET', 'POST'])
 def test():
-    file = xlrd.open_workbook('fan.xlsx')
-    sheet = file.sheet_by_index(0)
-    item = sheet.col_values(0)
-    return render_template('test.html',data =item)
+    file = pandas.read_excel('fan.xlsx')
+
+
+    return render_template('test.html',
+                           data = file
+                           )
 
 if __name__ == '__main__':
     app.run(debug=True)
