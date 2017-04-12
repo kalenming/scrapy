@@ -21,18 +21,18 @@ USER_AGENT = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, lik
 MONGO_HOST = "127.0.0.1"  # 主机IP
 MONGO_PORT = 27017  # 端口号
 MONGO_DB = "Spider"  # 库名
-MONGO_COLL = "jianshu"  # collection名
+MONGO_COLL = "test"  # collection名
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-CONCURRENT_REQUESTS = 4
+# CONCURRENT_REQUESTS = 4
 
 # Configure a delay for requests for the same website (default: 0)
 # See http://scrapy.readthedocs.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-DOWNLOAD_DELAY = 3
+#DOWNLOAD_DELAY = 3
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
@@ -68,7 +68,7 @@ DEFAULT_REQUEST_HEADERS = {
 #     }
 
 DOWNLOADER_MIDDLEWARES = {
-    'jianshuuser.middlewares.RandomUserAgent': 1,
+    #'jianshuuser.middlewares.RandomUserAgent': 1,
     'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': 110,
     'jianshuuser.middlewares.ProxyMiddleware': 100,
 }
